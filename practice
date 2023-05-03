@@ -1,0 +1,20 @@
+create database Aruna;
+-- creating sailors,boats,reserves tables--
+
+create table sailors(sid int,sname varchar(30),rating int,age int); 
+create table boats(bid int,bname varchar(20),color varchar(20));
+create table reserves(sid int,bid int,day1 date);
+insert into sailors values(22,"dustin",7,45),(29,"brutus",1,33),(31,"lubber",79,55),(32,"andy",8,25),(58,"rusty",10,35),(58,"buplb",10,35),(58,"buplerb",10,35),(22,"bb",10,35);
+insert into boats values(101,"interlake","blue"),(102,"interlake","red"),(103,"clipper","green"),(104,"marine","red");
+insert into reserves values(22,101,"2004-01-01"),(22,102,"2004-02-01"),(22,103,"2004-02-01"),(22,105,"2004-02-01"),(31,103,"2005-05-05"),(32,104,"2005-04-07");
+select *from sailors;
+select *from boats;
+select *from reserves;
+-- count the number of differnt sailors names-- 
+select count(sname) from sailors;
+-- calculate average age of sailors--
+select avg(age) from sailors; 
+select s.sid,sname,day1,age from sailors s left join reserves r on s.sid=r.sid order by s.age;
+select s.sid,sname,day1,age from sailors s right join reserves r on s.sid=r.sid order by s.sid;
+select s.rating,avg(s.age) from sailors s group by s.rating having avg(s.age)>=40;
+
